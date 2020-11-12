@@ -37,9 +37,10 @@
     </virtualType>
     <preference for="Lof\Gdpr\Model\Action\PerformedByInterface" type="Lof\Gdpr\Model\Action\PerformedBy\FrontUser"/>
     <preference for="Lof\Gdpr\Api\EraseEntityManagementInterface" type="Lof\Gdpr\Model\Erase\SecureEraseEntityManagement"/>
-    <type name="Lof\Gdpr\Controller\AbstractPrivacy">
-        <plugin name="customer_account" type="Magento\Customer\Controller\Plugin\Account"/>
-    </type>
+<!--    <preference for="Lof\Gdpr\Api\Data\EraseEntityInterface" type="Lof\Gdpr\Model\Customer\Erase\Notifier"/>-->
+<!--    <type name="Lof\Gdpr\Controller\AbstractPrivacy">-->
+<!--        <plugin name="customer_account" type="Magento\Customer\Controller\Plugin\Account"/>-->
+<!--    </type>-->
     <type name="Lof\Gdpr\Controller\AbstractGuest">
         <arguments>
             <argument name="orderLoader" xsi:type="object">Magento\Sales\Controller\Guest\OrderLoader</argument>

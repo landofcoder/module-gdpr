@@ -84,7 +84,6 @@ final class ActionEntityRepository implements ActionEntityRepositoryInterface
     public function getById(int $actionId): ActionEntityInterface
     {
         if (!isset($this->instances[$actionId])) {
-            /** @var ActionEntityInterface $actionEntity */
             $actionEntity = $this->actionCustomerFactory->create();
             $this->actionEntityResource->load($actionEntity, $actionId, ActionEntityInterface::ID);
 

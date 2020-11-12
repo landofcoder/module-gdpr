@@ -30,6 +30,7 @@ abstract class AbstractAction implements ActionInterface
         $this->resultBuilder->setState(ActionEntityInterface::STATE_SUCCEEDED);
         $this->resultBuilder->setPerformedAt(new DateTime());
         $this->resultBuilder->setResult($result);
+        $this->resultBuilder->setMessage('message test');
 
         return $this->resultBuilder->create();
     }

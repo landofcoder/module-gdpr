@@ -8,13 +8,14 @@ declare(strict_types=1);
 namespace Lof\Gdpr\Model\Action\Export;
 
 use InvalidArgumentException;
-use Magento\Framework\ObjectManagerInterface;
 use Lof\Gdpr\Api\Data\ActionContextInterface;
 use Lof\Gdpr\Api\Data\ActionResultInterface;
 use Lof\Gdpr\Model\Action\AbstractAction;
 use Lof\Gdpr\Model\Action\ArgumentReader as ActionArgumentReader;
 use Lof\Gdpr\Model\Action\ResultBuilder;
 use Lof\Gdpr\Model\Export\NotifierInterface;
+use Lof\Gdpr\Model\ExportEntityRepository;
+use Magento\Framework\ObjectManagerInterface;
 use function sprintf;
 
 final class NotifierActionBundle extends AbstractAction
@@ -32,16 +33,20 @@ final class NotifierActionBundle extends AbstractAction
     public function __construct(
         ResultBuilder $resultBuilder,
         array $notifiers,
-        ObjectManagerInterface $objectManager
+        ObjectManagerInterface $objectManager,
+        ExportEntityRepository $exportEntityRepository
     ) {
         $this->notifiers = $notifiers;
         $this->objectManager = $objectManager;
+        $this->exportEntity = $exportEntityRepository;
         parent::__construct($resultBuilder);
     }
 
     public function execute(ActionContextInterface $actionContext): ActionResultInterface
     {
-        $this->resolveNotifier($actionContext)->notify(ArgumentReader::getEntity($actionContext));
+        $entityId = ActionArgumentReader::getEntityId($actionContext);
+        $exportModel = $this->exportEntity->getById($entityId);
+        $this->resolveNotifier($actionContext)->notify($exportModel);
 
         return $this->createActionResult(['is_notify' => true]);
     }

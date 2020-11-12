@@ -8,11 +8,11 @@ declare(strict_types=1);
 namespace Lof\Gdpr\Cron;
 
 use Exception;
-use Magento\Framework\Api\SearchCriteriaBuilder;
 use Lof\Gdpr\Api\Data\ExportEntityInterface;
 use Lof\Gdpr\Api\ExportEntityManagementInterface;
 use Lof\Gdpr\Api\ExportEntityRepositoryInterface;
 use Lof\Gdpr\Model\Config;
+use Magento\Framework\Api\SearchCriteriaBuilder;
 use Psr\Log\LoggerInterface;
 
 /**

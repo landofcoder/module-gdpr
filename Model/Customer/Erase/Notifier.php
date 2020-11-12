@@ -7,11 +7,12 @@ declare(strict_types=1);
 
 namespace Lof\Gdpr\Model\Customer\Erase;
 
-use Magento\Customer\Api\CustomerRepositoryInterface;
-use Magento\Framework\Exception\LocalizedException;
 use Lof\Gdpr\Api\Data\EraseEntityInterface;
 use Lof\Gdpr\Model\Customer\Notifier\SenderInterface;
 use Lof\Gdpr\Model\Erase\NotifierInterface;
+use Magento\Customer\Api\CustomerRepositoryInterface;
+use Magento\Framework\Exception\LocalizedException;
+use Magento\Framework\Exception\NoSuchEntityException;
 
 final class Notifier implements NotifierInterface
 {
@@ -36,8 +37,9 @@ final class Notifier implements NotifierInterface
     }
 
     /**
-     * @inheritdoc
+     * @param EraseEntityInterface $eraseEntity
      * @throws LocalizedException
+     * @throws NoSuchEntityException
      */
     public function notify(EraseEntityInterface $eraseEntity): void
     {

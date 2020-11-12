@@ -16,11 +16,24 @@ final class ArgumentReader
 
     public static function getEntityType(ActionContextInterface $actionContext): ?string
     {
-        return $actionContext->getParameters()[self::ENTITY_TYPE] ?? null;
+        if (!is_string($actionContext->getParameters()[self::ENTITY_TYPE])) {
+            return ($actionContext->getParameters()[self::ENTITY_TYPE]->getData(self::ENTITY_TYPE)) ?? null;
+        } else {
+            return $actionContext->getParameters()[self::ENTITY_TYPE] ?? null;
+        }
     }
 
     public static function getEntityId(ActionContextInterface $actionContext): ?int
     {
         return $actionContext->getParameters()[self::ENTITY_ID] ?? null;
+    }
+
+    public static function getEraseId(ActionContextInterface  $actionContext): ?int
+    {
+        if (is_object($actionContext->getParameters()[self::ENTITY_TYPE])) {
+            return (int)($actionContext->getParameters()[self::ENTITY_TYPE]->getData('erase_id')) ?? null;
+        } else {
+            return null;
+        }
     }
 }

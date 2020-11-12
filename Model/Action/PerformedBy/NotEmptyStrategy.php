@@ -24,9 +24,10 @@ final class NotEmptyStrategy implements PerformedByInterface
     public function __construct(
         array $performedByList
     ) {
-        $this->performedByList = (static function (PerformedByInterface ...$performedByList) {
-            return $performedByList;
-        })(...$performedByList);
+//        $this->performedByList = (static function (PerformedByInterface ...$performedByList) {
+//            return $performedByList;
+//        })(...$performedByList);
+        $this->performedByList = $performedByList;
     }
 
     public function get(): string

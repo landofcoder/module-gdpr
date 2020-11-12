@@ -18,10 +18,10 @@
         <constraint xsi:type="primary" referenceId="PRIMARY">
             <column name="erase_id"/>
         </constraint>
-        <index referenceId="OPENGENTO_GDPR_ERASE_ENTITY_ENTITY_ID" indexType="btree">
+        <index referenceId="LOF_GDPR_ERASE_ENTITY_ENTITY_ID" indexType="btree">
             <column name="entity_id"/>
         </index>
-        <index referenceId="OPENGENTO_GDPR_ERASE_ENTITY_ENTITY_TYPE" indexType="btree">
+        <index referenceId="LOF_GDPR_ERASE_ENTITY_ENTITY_TYPE" indexType="btree">
             <column name="entity_type"/>
         </index>
     </table>
@@ -37,10 +37,10 @@
         <constraint xsi:type="primary" referenceId="PRIMARY">
             <column name="export_id"/>
         </constraint>
-        <index referenceId="OPENGENTO_GDPR_EXPORT_ENTITY_ENTITY_ID" indexType="btree">
+        <index referenceId="LOF_GDPR_EXPORT_ENTITY_ENTITY_ID" indexType="btree">
             <column name="entity_id"/>
         </index>
-        <index referenceId="OPENGENTO_GDPR_EXPORT_ENTITY_ENTITY_TYPE" indexType="btree">
+        <index referenceId="LOF_GDPR_EXPORT_ENTITY_ENTITY_TYPE" indexType="btree">
             <column name="entity_type"/>
         </index>
     </table>
@@ -56,10 +56,10 @@
         <constraint xsi:type="primary" referenceId="PRIMARY">
             <column name="action_id"/>
         </constraint>
-        <index referenceId="OPENGENTO_GDPR_ACTION_ENTITY_TYPE" indexType="btree">
+        <index referenceId="LOF_GDPR_ACTION_ENTITY_TYPE" indexType="btree">
             <column name="type"/>
         </index>
-        <index referenceId="OPENGENTO_GDPR_ACTION_ENTITY_STATE" indexType="btree">
+        <index referenceId="LOF_GDPR_ACTION_ENTITY_STATE" indexType="btree">
             <column name="state"/>
         </index>
     </table>
@@ -82,8 +82,8 @@
             <column name="agreement_id"/>
             <column name="store_id"/>
         </constraint>
-        <constraint xsi:type="foreign" referenceId="OPENGENTO_GDPR_AGREEMENT_STORE_AGRT_ID_OPENGENTO_GDPR_AGREEMENT_AGREEMENT_ID" table="lof_gdpr_agreement_store" column="agreement_id" referenceTable="lof_gdpr_agreement" referenceColumn="agreement_id" onDelete="CASCADE"/>
-        <constraint xsi:type="foreign" referenceId="OPENGENTO_GDPR_AGREEMENT_STORE_STORE_ID_STORE_STORE_ID" table="lof_gdpr_agreement_store" column="store_id" referenceTable="store" referenceColumn="store_id" onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="LOF_GDPR_AGREEMENT_STORE_AGRT_ID_LOF_GDPR_AGREEMENT_AGREEMENT_ID" table="lof_gdpr_agreement_store" column="agreement_id" referenceTable="lof_gdpr_agreement" referenceColumn="agreement_id" onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="LOF_GDPR_AGREEMENT_STORE_STORE_ID_STORE_STORE_ID" table="lof_gdpr_agreement_store" column="store_id" referenceTable="store" referenceColumn="store_id" onDelete="CASCADE"/>
     </table>
     <table name="lof_gdpr_consent" resource="default" engine="innodb" comment="Consent">
         <column xsi:type="int" name="consent_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Consent Id"/>

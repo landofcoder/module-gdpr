@@ -7,16 +7,17 @@ declare(strict_types=1);
 
 namespace Lof\Gdpr\Model\Erase;
 
-use Magento\Framework\Exception\LocalizedException;
-use Magento\Framework\Phrase;
 use Lof\Gdpr\Api\Data\EraseEntityInterface;
 use Lof\Gdpr\Api\EraseEntityCheckerInterface;
 use Lof\Gdpr\Api\EraseEntityManagementInterface;
+use Lof\Gdpr\Model\EraseEntityManagement;
+use Magento\Framework\Exception\LocalizedException;
+use Magento\Framework\Phrase;
 
 final class SecureEraseEntityManagement implements EraseEntityManagementInterface
 {
     /**
-     * @var EraseEntityManagementInterface
+     * @var EraseEntityManagement
      */
     private $eraseEntityManagement;
 
@@ -26,7 +27,7 @@ final class SecureEraseEntityManagement implements EraseEntityManagementInterfac
     private $eraseEntityChecker;
 
     public function __construct(
-        EraseEntityManagementInterface $eraseEntityManagement,
+        EraseEntityManagement $eraseEntityManagement,
         EraseEntityCheckerInterface $eraseEntityChecker
     ) {
         $this->eraseEntityManagement = $eraseEntityManagement;
@@ -60,7 +61,6 @@ final class SecureEraseEntityManagement implements EraseEntityManagementInterfac
         if ($this->eraseEntityChecker->canProcess($entity->getEntityId(), $entity->getEntityType())) {
             return $this->eraseEntityManagement->process($entity);
         }
-
         throw new LocalizedException(new Phrase('Impossible to process the erasure, there is still pending orders.'));
     }
 }

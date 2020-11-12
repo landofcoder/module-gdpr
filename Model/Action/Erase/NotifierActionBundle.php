@@ -8,13 +8,14 @@ declare(strict_types=1);
 namespace Lof\Gdpr\Model\Action\Erase;
 
 use InvalidArgumentException;
-use Magento\Framework\ObjectManagerInterface;
 use Lof\Gdpr\Api\Data\ActionContextInterface;
 use Lof\Gdpr\Api\Data\ActionResultInterface;
 use Lof\Gdpr\Model\Action\AbstractAction;
 use Lof\Gdpr\Model\Action\ArgumentReader as ActionArgumentReader;
 use Lof\Gdpr\Model\Action\ResultBuilder;
 use Lof\Gdpr\Model\Erase\NotifierInterface;
+use Lof\Gdpr\Model\EraseEntityRepository;
+use Magento\Framework\ObjectManagerInterface;
 use function sprintf;
 
 final class NotifierActionBundle extends AbstractAction
@@ -28,20 +29,30 @@ final class NotifierActionBundle extends AbstractAction
      * @var ObjectManagerInterface
      */
     private $objectManager;
+    /**
+     * @var EraseEntityRepository
+     */
+    private $eraseEntity;
 
     public function __construct(
         ResultBuilder $resultBuilder,
         array $notifiers,
-        ObjectManagerInterface $objectManager
+        ObjectManagerInterface $objectManager,
+        EraseEntityRepository $eraseEntityRepository
     ) {
         $this->notifiers = $notifiers;
         $this->objectManager = $objectManager;
+        $this->eraseEntity = $eraseEntityRepository;
         parent::__construct($resultBuilder);
     }
 
     public function execute(ActionContextInterface $actionContext): ActionResultInterface
     {
-        $this->resolveNotifier($actionContext)->notify(ArgumentReader::getEntity($actionContext));
+        $eraseId = ActionArgumentReader::getEraseId($actionContext);
+        if ($eraseId) {
+            $eraseModel = $this->eraseEntity->getById($eraseId);
+            $this->resolveNotifier($actionContext)->notify($eraseModel);
+        }
 
         return $this->createActionResult(['is_notify' => true]);
     }
