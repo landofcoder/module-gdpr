@@ -108,6 +108,26 @@ class Data extends AbstractHelper
     }
 
     /**
+     * @param null $storeId
+     *
+     * @return bool
+     */
+    public function allowDeleteSeller($storeId = null)
+    {
+        return $this->isEnabled($storeId) && $this->getConfigGeneral('allow_delete_seller', $storeId);
+    }
+
+    /**
+     * @param null $storeId
+     *
+     * @return mixed
+     */
+    public function getDeleteSellerMessage($storeId = null)
+    {
+        return $this->getConfigGeneral('delete_seller_message', $storeId);
+    }
+
+    /**
      * @return string
      */
     public function getDeleteAccountUrl()

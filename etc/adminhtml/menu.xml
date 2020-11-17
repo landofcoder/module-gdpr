@@ -1,0 +1,7 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Lof_Gdpr::gdpr" module="Lof_Gdpr" parent="Lof_All::lof_all" resource="Lof_Gdpr::gdpr" sortOrder="9999" title="GDPR"/>
+        <add id="Lof_Gdpr::settings" module="Lof_Gdpr" parent="Lof_Gdpr::gdpr" resource="Lof_Gdpr::settings" action="adminhtml/system_config/edit/section/gdpr" sortOrder="9999" title="Settings"/>
+    </menu>
+</config>

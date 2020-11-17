@@ -17,14 +17,18 @@
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
                 <field id="delete_customer_message" translate="label comment" type="textarea" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
-                    <label>Message of Deleting</label>
-                    <comment>The message will be shown on Delete Account area. HTML code is allowed.</comment>
+                    <label>Message of Delete Customer</label>
+                    <comment>The message will be shown on Delete Account area.</comment>
                     <depends>
                         <field id="allow_delete_customer">1</field>
                     </depends>
                 </field>
                 <field id="allow_delete_default_address" translate="label comment" type="select" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Allow Deleting Default Address</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="allow_delete_seller" translate="label comment" type="select" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Allow Deleting Seller Account</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
             </group>
